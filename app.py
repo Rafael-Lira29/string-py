@@ -43,18 +43,18 @@ with st.sidebar:
     st.header("🔐 Modo Root")
     senha = st.text_input("Chave de Acesso:", type="password")
     
-    # A senha padrão está definida como "SextaFeira". Você pode alterar aqui no código.
-    if senha == "SextaFeira":
+    # O sistema agora busca a credencial no cofre seguro
+    if senha == st.secrets["ROOT_PASSWORD"]:
         st.success("Acesso Liberado, Rafael.")
         valor_hora = st.number_input("Valor da Hora Técnica (R$):", min_value=1.0, value=15.0, step=1.0)
         overhead = st.slider("Custos Fixos (Overhead) %:", 0, 30, 5) / 100
         markup = st.number_input("Markup (Lucro):", min_value=1.0, value=1.4, step=0.1)
     else:
-        # Se a senha não for inserida, o sistema roda com os valores fixos (Ideais para a Isabelle)
+        # Parâmetros padrão operando em Background
         valor_hora = 15.0
         overhead = 0.05
         markup = 1.4
-        st.info("Interface otimizada para produção. Parâmetros de cálculo operando em Background.")
+        st.info("Interface otimizada para produção. Parâmetros de cálculo protegidos.")
 
 # --- 4. ENTRADA DE DADOS (INTERFACE ISABELLE) ---
 st.subheader("📝 Detalhes da Nova Peça")
